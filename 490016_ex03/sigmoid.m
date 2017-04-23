@@ -8,15 +8,7 @@ g = zeros(size(z));
 % ====================== ESCREVA O SEU CODIGO AQUI ======================
 % Instrucoes: Calcule a sigmoid de cada valor de z (z pode ser uma matriz,
 %               vetor ou escalar).
-
-
-
-
-
-
-
-
-
+g = 1 ./ (1 + e .^ -z);
 % =======================================================================
 
 end

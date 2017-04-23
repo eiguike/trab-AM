@@ -41,8 +41,8 @@ hold on;
 % Insere titulo, legenda e eixos
 title('Plot 2D da base de dados Iris');
 legend('Iris Setosa (y=1)','Iris Versicolour (y=0)');
-xlabel('Comprimento da pétala (cm)');
-ylabel('Largura da pétala (cm)');
+xlabel('Comprimento da petala (cm)');
+ylabel('Largura da petala (cm)');
 
 fprintf('\nPrograma pausado. Pressione enter para continuar.\n');
 pause;
