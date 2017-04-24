@@ -244,7 +244,7 @@ x1_novo = input('Informe o comprimento da pétala (normalizado) ou -1 para SAIR: 
 
 while (x1_novo ~= -1)
     
-    x2_novo = input('Informe a largura da pétala (normalizado): ');
+    x2_novo = input('Informe a largura da ptala (normalizado): ');
     x_novo = atributosPolinomiais(x1_novo, x2_novo);
 
     classe = predicao(theta, x_novo); % Faz a predicao usando theta encontrado
@@ -255,7 +255,7 @@ while (x1_novo ~= -1)
         fprintf('Classe = Iris Versicolour (y = 0)\n\n');
     end
     
-    x1_novo = input('Informe o comprimento da pétala (em cm) ou -1 para SAIR: ');
+    x1_novo = input('Informe o comprimento da petala (em cm) ou -1 para SAIR: ');
 end
 
 

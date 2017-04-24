@@ -18,15 +18,13 @@ grad = zeros(size(theta));
 %
 % Obs: grad deve ter a mesma dimensao de theta
 %
+h = sigmoid(X*theta);
+J = (1/m)*(-y' * log(h) - (1 - y)' * log(1-h));
+J = J + sum((theta .^ 2)) * (lambda/(2*m));
 
 
-
-
-
-
-
-
-
+grad(1) = ((1/m) * X'(1) * (h(1)-y(1)));
+grad = ((1/m)* X' *(h - y)) + (lambda/m)*(grad);
 
 % =============================================================
 
