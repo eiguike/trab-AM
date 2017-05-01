@@ -20,16 +20,8 @@ pAtrDerrota = zeros(size(X,2),1);
 %               mesmo para a classe 0 (derrota):
 %               P(Atributo1=1|Classe=0), ..., P(Atributo5=1|Classe=0).
 %
-[m, n] = size(X);
-
-count_izigamegg = sum(Y == 1);
-count_lose = sum(Y == 0);
-
-for Index = 1:n
-  pAtrVitoria(Index) = X(:,[Index])' * (Y == 1)/count_izigamegg;
-  pAtrDerrota(Index) = X(:,[Index])' * (Y == 0)/count_lose;
-endfor
-
+pAtrVitoria = (X' * (Y == 1))/sum(Y == 1);
+pAtrDerrota = (X' * (Y == 0))/sum(Y == 0);
 % =========================================================================
 
 end
