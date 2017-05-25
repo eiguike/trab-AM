@@ -27,8 +27,8 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
                  num_labels, (hidden_layer_size + 1));
 
 % Definindo variaveis uteis
-m = size(X, 1);
-         
+m = size(X, 1)
+
 % As variaveis a seguir precisam ser retornadas corretamente
 J = 0;
 Theta1_grad = zeros(size(Theta1));
@@ -53,7 +53,33 @@ Theta2_grad = zeros(size(Theta2));
 % (4): Implemente a regularização na função de custo e gradiente.
 %
 
+tam = size(y)
 
+Y = zeros(tam, 10);
+for i = 1:10
+  Y(:,i) = y;
+endfor
+J_theta = 0;
+
+hyp = sigmoide(X);
+for i = 1:10
+  size(-y(:,i)')
+  size(log(hyp))
+  J_theta1 = (-y(:,i)' * log(hyp));
+  J_theta2 = - (1 - y(:,i))' * log(1-hyp);
+  J_theta = J_theta1 + J_theta2;
+endfor
+
+J_theta = J_theat/m
+
+%J_theta = J_theta * (-y' * log(hyp) - (1 - y)' * log(1-hyp));
+
+%hyp = sigmoid(X*theta);
+%J = (1/m)*(-y' * log(hyp) - (1 - y)' * log(1-hyp));
+%J = J + sum((theta .^ 2)) * (lambda/(2*m));
+
+%grad(1) = ((1/m) * X'(1) * (hyp(1)-y(1)));
+%grad = ((1/m)* X' *(hyp - y)) + (lambda/m)*(grad);
 
 % -------------------------------------------------------------
 
