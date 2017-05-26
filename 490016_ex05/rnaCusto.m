@@ -65,23 +65,24 @@ Theta2_grad = zeros(size(Theta2));
 
 
 Y = zeros(size(y), 10);
-
+size(y)
 for i = 1:10
  Y(:,i) = (y==i);
 endfor
 
 size(Y)
 
-J_theta = 0
 
 hyp = X * Theta1(:,2:401)';
-J_theta += (-(Y') * log(hyp)- (1 - Y)' * log(1-hyp));
+J_theta += (-(Y') * log(hyp) - (1 - Y)' * log(1-hyp));
 
+J_theta1 = max(J_theta' * ones(10,1));
 
 hyp = hyp * Theta2(:,2:26)';
-J_theta += (-(Y') * log(hyp)- (1 - Y)' * log(1-hyp));
+J_theta2 = (-(Y') * log(hyp) - (1 - Y)' * log(1-hyp));
+J_theta2 = max(J_theta2' * ones(10,1));
 
-J = sum(J_theta);
+J = J_theta1 + J_theta2;
 
 % -------------------------------------------------------------
 
