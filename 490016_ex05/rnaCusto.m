@@ -65,24 +65,17 @@ Theta2_grad = zeros(size(Theta2));
 
 
 Y = zeros(size(y), 10);
-size(y)
 for i = 1:10
  Y(:,i) = (y==i);
 endfor
 
-size(Y)
+a = sigmoide([X,ones(5000,1)] * Theta1'); % 5000 x 25
+a2 = sigmoide([a, ones(5000,1)] * Theta2');
 
+-(Y)' * log(a2)
 
-hyp = X * Theta1(:,2:401)';
-J_theta += (-(Y') * log(hyp) - (1 - Y)' * log(1-hyp));
-
-J_theta1 = max(J_theta' * ones(10,1));
-
-hyp = hyp * Theta2(:,2:26)';
-J_theta2 = (-(Y') * log(hyp) - (1 - Y)' * log(1-hyp));
-J_theta2 = max(J_theta2' * ones(10,1));
-
-J = J_theta1 + J_theta2;
+- (1 - Y)' * log(1-a2)
+J_theta = (-(Y') * log(a2) - (1 - Y)' * log(1-a2));
 
 % -------------------------------------------------------------
 
