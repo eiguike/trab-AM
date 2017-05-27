@@ -11,9 +11,7 @@ g = zeros(size(z));
 % Instrucoes: Calcula o gradiente da funcao sigmoidal para 
 %               cada valor de z (seja z matriz, escalar ou vetor).
 
-
-
-
+g = sigmoide(z) .* (1 - sigmoide(z));
 % =============================================================
 
 end
