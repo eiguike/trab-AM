@@ -69,13 +69,17 @@ for i = 1:10
  Y(:,i) = (y==i);
 endfor
 
-a = sigmoide([X,ones(5000,1)] * Theta1'); % 5000 x 25
-a2 = sigmoide([a, ones(5000,1)] * Theta2');
 
--(Y)' * log(a2)
+a = sigmoide(Theta1 * [X,ones(5000,1)]'); % 25 x 5000
+a2 = sigmoide(Theta2 * [a; ones(1,5000)]); % 10 x 5000
 
-- (1 - Y)' * log(1-a2)
-J_theta = (-(Y') * log(a2) - (1 - Y)' * log(1-a2));
+%J_theta = (-(Y') * log(a2) - (1 - Y)' * log(1-a2))  % 10 x 10
+J_theta1 = (-Y)' * log(a2)';
+J_theta2 = (1 - Y)' * log(1 - a2)';
+
+J_theta = (J_theta1 - J_theta2)/m;
+
+J = min(J_theta);
 
 % -------------------------------------------------------------
 
