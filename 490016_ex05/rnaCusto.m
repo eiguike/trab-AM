@@ -71,25 +71,21 @@ endfor
 a = sigmoide([ones(m,1), X] * Theta1'); % 5000 x 25
 a2 = sigmoide([ones(m,1), a] * Theta2'); % 5000 x 10
 
-sigma2_l = 0;
-delta1 = 0;
-delta2 = 0;
-
 J_theta1 = 0;
 for i = 1:m
-  sigma3_k = a2(i,:) - Y(i,:); % 1 x 10
-  sigma2_l += (sigma3_k * Theta2(:, 2:end) .* gradienteSigmoide(a(i,:))); % 1 x 25
-
-  delta1 += sigma2_l * a(i,:)';
-  delta2 += sigma3_k * a2(i,:)';
-
   J_theta1 += (-Y(i,:) * log(a2(i,:))' -( (1 - Y(i,:)) * log(1 - a2(i,:))'));
 endfor
 
 J = J_theta1/m;
 
-Theta1_grad = (delta1./m) + (lambda/m)*[zeros(size(Theta1,1), 1) Theta1(:, 2:end)];
-Theta2_grad = (delta2./m) + (lambda/m)*[zeros(size(Theta2,1), 1) Theta2(:, 2:end)];
+sigma3_k = a2 - Y;
+sigma2_l = (sigma3_k * Theta2(:, 2:end) .* gradienteSigmoide(a));
+
+delta1 = sigma2_l' * [ones(m,1), X];
+delta2 = sigma3_k' * [ones(m,1), a];
+Theta1_grad = (delta1./m) + (lambda/m) * [zeros(size(Theta1,1), 1), Theta1(:, 2:end)];
+
+Theta2_grad = (delta2./m) + (lambda/m) * [zeros(size(Theta2,1), 1), Theta2(:, 2:end)];
 
 J2 = 0;
 for i = 1:hidden_layer_size
@@ -106,8 +102,6 @@ endfor
 J += J2 * (lambda/(2*m));
 
 % -------------------------------------------------------------
-
-
 
 % =========================================================================
 
