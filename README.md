@@ -1,6 +1,7 @@
 # Aprendizado de Máquina 2017/1
 
 Em cada pasta do trabalho, há um arquivo .pdf que contém as especificações dos trabalhos, seguindo a ordem:
+
 ---
 #### Trabalho 1 - k-Vizinhos mais próximos
 #### Trabalho 2 - Regressão Linear
